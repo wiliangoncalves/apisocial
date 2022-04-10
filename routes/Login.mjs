@@ -1,11 +1,11 @@
-import express from "express";
+import express, { Router } from "express";
 import jwt from "jsonwebtoken";
 
-const Login = express();
+const Router = express.Router();
 
 import db from "../config/database.mjs";
 
-Login.post("/", (req, res) => {
+Router.post("/", (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     
@@ -53,4 +53,4 @@ Login.post("/", (req, res) => {
     });
 });
 
-export default Login;
+export default Router;

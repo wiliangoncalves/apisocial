@@ -14,7 +14,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const publicPath = path.join(__dirname, '..', 'public');
+const publicPath = path.join(__dirname, 'public');
 
 //middlewares
 app.use(express.urlencoded({extended: true}));
