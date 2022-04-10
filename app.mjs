@@ -24,10 +24,14 @@ app.use(cors());
 
 app.use(express.static(publicPath));
 
-app.get('*', (req, res) => {
-    // res.send("OLHA O SERVIDOR!")
-    res.sendFile(path.join(publicPath, 'index.html'));
- }); 
+app.get("/", (req, res) => {
+    res.send("Olha a api");
+})
+
+// app.get('*', (req, res) => {
+//     // res.send("OLHA O SERVIDOR!")
+//     res.sendFile(path.join(publicPath, 'index.html'));
+//  }); 
 
 //Routes config
 app.use("/login", Login);
