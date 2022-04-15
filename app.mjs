@@ -9,6 +9,7 @@ import Login from "./routes/Login.mjs";
 import Register from "./routes/Register.mjs";
 import Me from "./routes/Me.mjs";
 import MyPost from "./routes/MyPost.mjs";
+import Profile from "./routes/Profile.mjs";
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -38,5 +39,6 @@ app.use("/login", Login);
 app.use("/register", Register);
 app.use("/me", Me);
 app.use("/mypost", MyPost);
+app.use("/profile", Profile);
 
 app.listen(port, console.log("Servidor rodando na porta " + port));

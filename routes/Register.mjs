@@ -56,8 +56,6 @@ Router.post("/", (req, res) => {
             console.log("Não foi achado nenhum email!");
         }
 
-        console.log(JSON.stringify(result.length) > 0);
-
         if(JSON.stringify(result.length) > 0){
             return res.status(400).send({
                 message: "E-mail já está sendo usado!",

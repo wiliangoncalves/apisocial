@@ -1,4 +1,4 @@
-import express  from "express";
+import express from "express";
 import jwt from "jsonwebtoken";
 
 const Router = express.Router();
@@ -41,11 +41,13 @@ Router.post("/", (req, res) => {
             const token = jwt.sign({id}, process.env.SECRET_KEY, {
                 expiresIn: 900 // 5min,
             });
-
+            
             return res.status(200).send({
                 message: "Login.mjs foi!",
                 auth: true,
                 token: token,
+                username: user.user,
+                profile: user.profile,
                 status: res.statusCode
             });
         };

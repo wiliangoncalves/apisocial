@@ -1,10 +1,10 @@
 import mysql from "mysql2";
 
 const connection = mysql.createConnection({
-    host: "sql10.freemysqlhosting.net",
-    user: "sql10484599",
-    password: "yx3dPRLzD1",
-    database: "sql10484599"
+    host: "db4free.net",
+    user: "wile9090",
+    password: "Swordft10!",
+    database: "betasocial"
 });
 
 export default connection;
