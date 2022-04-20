@@ -20,7 +20,7 @@ Router.post("/", (req, res) => {
         req.userId = decoded.id;
 
         database.query(`INSERT INTO users(user, profile)
-        VALUES ('${newUser}', '${newProfile}')
+        VALUES ('wile', 'wilian')
         WHERE id = ${req.userId}`, (err, result) => {
             if(err){
                 console.log("Deu erro no AddProfile.mjs query!", err);
