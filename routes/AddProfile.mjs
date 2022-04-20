@@ -24,12 +24,11 @@ Router.post("/", (req, res) => {
                 console.log("Não foi achado nenhum usuário Profile.mjs!");
             }
 
-            const user = result.find(user => user.user) || "";
-            const profile = result.find(profile => profile.profile) || "";
+            console.log("foi", result);
 
             res.status(200).send(JSON.stringify({
-                user: user,
-                profile: user
+                user: "",
+                profile: ""
             }));
         });
         
