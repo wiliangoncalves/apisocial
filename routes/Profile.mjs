@@ -37,7 +37,7 @@ Router.post("/", (req, res) => {
             res.status(200).send(JSON.stringify({
                 message: "Ok",
                 auth: true,
-                username: user.user,
+                user: user.user,
                 profile: profile.profile,
                 status: res.statusCode
             }))
