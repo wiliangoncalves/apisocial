@@ -21,7 +21,7 @@ Router.post("/", (req, res) => {
 
         database.query(`INSERT INTO users(user, profile) VALUES ('${newUser}', '${newProfile}') WHERE id = '${req.userId}'`, (err, result) => {
             if(err){
-                console.log("Não foi achado nenhum usuário Profile.mjs!");
+                console.log("Deu erro no AddProfile.mjs query!", err);
             }
 
             console.log("foi", result);
