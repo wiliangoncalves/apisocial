@@ -19,7 +19,7 @@ Router.post("/", (req, res) => {
         // se tudo estiver ok, salva no request para uso posterior.
         req.userId = decoded.id;
 
-        database.query(`INSERT INTO users WHERE id = '${req.userId}'`, (err, result) => {
+        database.query(`INSERT INTO user, profile FROM users WHERE id = '${req.userId}'`, (err, result) => {
             if(err){
                 console.log("Não foi achado nenhum usuário Profile.mjs!");
             }
