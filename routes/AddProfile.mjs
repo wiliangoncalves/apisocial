@@ -19,8 +19,7 @@ Router.post("/", (req, res) => {
         // se tudo estiver ok, salva no request para uso posterior.
         req.userId = decoded.id;
 
-        database.query(`INSERT INTO users(user, profile)
-        VALUES ('wile', 'wilian')
+        database.query(`UPDATE users SET user = '${newUser}', profile = '${newProfile}'
         WHERE id = ${req.userId}`, (err, result) => {
             if(err){
                 console.log("Deu erro no AddProfile.mjs query!", err);
@@ -29,8 +28,8 @@ Router.post("/", (req, res) => {
             console.log("foi", result);
 
             res.status(200).send(JSON.stringify({
-                user: "",
-                profile: ""
+                user: newUser,
+                profile: newProfile
             }));
         });
         
