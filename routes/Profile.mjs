@@ -5,6 +5,10 @@ import jwt from "jsonwebtoken";
 const Router = express.Router();
 
 Router.get("/", (req, res) => {
+    console.log("Esse é o get do Profile", req.body);
+
+    const token = req.body.token;
+
     jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
         if (err) return res.json({ 
             auth: false,
