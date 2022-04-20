@@ -5,18 +5,6 @@ import jwt from "jsonwebtoken";
 const Router = express.Router();
 
 Router.get("/", (req, res) => {
-    database.query(`SELECT * FROM users`, (err, result) => {
-        if(err){console.log("Erro na query do get em Profile.mjs")};
-
-        res.status(200).send(JSON.stringify({
-            users: result
-        }));
-    });
-});
-
-Router.post("/", (req, res) => {
-    const token = req.body.token;
-
     jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
         if (err) return res.json({ 
             auth: false,
@@ -44,6 +32,19 @@ Router.post("/", (req, res) => {
         });
         
     });
+
+    database.query(`SELECT * FROM users`, (err, result) => {
+        if(err){console.log("Erro na query do get em Profile.mjs")};
+
+        res.status(200).send(JSON.stringify({
+            users: result
+        }));
+    });
+});
+
+Router.post("/", (req, res) => {
+    const token = req.body.token;
+
 });
 
 export default Router;
