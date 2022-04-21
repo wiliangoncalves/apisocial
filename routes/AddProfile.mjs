@@ -10,7 +10,7 @@ Router.post("/", (req, res) => {
     const token = req.body.token;
 
 
-    if(newUser.length === 0){
+    if(newUser === 'undefnied'){
         newUser = req.body.dbUser;
     }
 
