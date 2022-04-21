@@ -9,6 +9,7 @@ Router.post("/", (req, res) => {
     const newProfile = req.body.newProfile;
     const token = req.body.token;
 
+    console.log("OLHA O TYPE", typeof newUser, "OLHA ELE NORMAL", newUser);
 
     if(newUser === 'undefnied'){
         newUser = req.body.dbUser;
