@@ -6,13 +6,15 @@ const Router = express.Router();
 
 Router.post("/", (req, res) => {
     let newUser = req.body.newUser;
-    const newProfile = req.body.newProfile;
+    let newProfile = req.body.newProfile;
     const token = req.body.token;
 
-    console.log("OLHA O TYPE", typeof newUser, "OLHA ELE NORMAL", newUser);
-
-    if(newUser === 'undefnied'){
+    if(newUser === '' || newUser.length <= 5){
         newUser = req.body.dbUser;
+    }
+
+    if(newProfile === '' || newProfile.length <= 5){
+        newProfile = req.body.dbProfile;
     }
 
     jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
