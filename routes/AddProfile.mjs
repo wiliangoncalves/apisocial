@@ -5,10 +5,14 @@ import jwt from "jsonwebtoken";
 const Router = express.Router();
 
 Router.post("/", (req, res) => {
-    const newUser = req.body.newUser;
+    let newUser = req.body.newUser;
     const newProfile = req.body.newProfile;
     const token = req.body.token;
 
+
+    if(newUser.length === 0){
+        newUser = req.body.dbUser;
+    }
 
     jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
         if (err) return res.json({ 
