@@ -9,11 +9,11 @@ Router.post("/", (req, res) => {
     let newProfile = req.body.newProfile;
     const token = req.body.token;
 
-    if(newUser === '' || newUser.length <= 5){
+    if(newUser === ''){
         newUser = req.body.dbUser;
     }
 
-    if(newProfile === '' || newProfile.length <= 5){
+    if(newProfile === ''){
         newProfile = req.body.dbProfile;
     }
 
