@@ -39,7 +39,8 @@ Router.post("/", (req, res) => {
                 auth: true,
                 user: user.user,
                 profile: profile.profile,
-                status: res.statusCode
+                status: res.statusCode,
+                id: req.userId
             }))
         });
         
