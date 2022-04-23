@@ -8,6 +8,7 @@ Router.post("/", (req, res) => {
     const email = req.body.email || "";
     const password = req.body.password || "";
     const repeatPassword = req.body.repeatPassword || "";
+    const avatar = req.body.avatar || "https://iili.io/VvKa8g.png";
     
     if(user.length < 5 || user.trim() == ""){
         return res.status(400).send({
@@ -64,8 +65,8 @@ Router.post("/", (req, res) => {
         }
         else if(user.trim() && profile.trim() && email.trim() && password.trim() && repeatPassword.trim () && password === repeatPassword){
 
-            database.query(`INSERT INTO users (user, profile, email, password)
-            VALUES('${user}', '${profile}', '${email}', '${password}')`);
+            database.query(`INSERT INTO users (user, profile, email, password, avatar)
+            VALUES('${user}', '${profile}', '${email}', '${password}', '${avatar}')`);
 
             return res.status(200).send({
                 message: "Cadastro realizado com Sucesso!",
