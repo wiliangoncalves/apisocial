@@ -20,6 +20,8 @@ Router.post("/", (req, res) => {
         newProfile = req.body.dbProfile;
     }
 
+    console.log("Olha o avatar", newAvatar);
+
     if(newAvatar === ''){
         newAvatar = req.body.avatar;
     }
