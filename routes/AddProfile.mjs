@@ -22,6 +22,7 @@ Router.post("/", (req, res) => {
 
     console.log("Olha o avatar", typeof newAvatar);
     console.log("Olha o tamanho do AVATAR", newAvatar.length);
+    console.log("ESTÁ VINDO DO REQ.BODY.AVATAR", req.body.avatar);
 
     if(newAvatar === '' || newAvatar.length <= 0){
         newAvatar = req.body.avatar;
