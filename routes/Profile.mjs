@@ -33,6 +33,7 @@ Router.post("/", (req, res) => {
 
             const user = result.find(user => user.user) || "";
             const profile = result.find(profile => profile.profile) || "";
+            const avatar = result.find(avatar => avatar.avatar) || "";
 
             res.status(200).send(JSON.stringify({
                 message: "Ok",
@@ -40,7 +41,7 @@ Router.post("/", (req, res) => {
                 user: user.user,
                 profile: profile.profile,
                 status: res.statusCode,
-                id: req.userId
+                avatar: avatar.avatar
             }))
         });
         
