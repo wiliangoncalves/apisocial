@@ -10,8 +10,6 @@ Router.post("/", (req, res) => {
     let newAvatar = req.body.newAvatar;
     const token = req.body.token;
 
-    console.log(req.body.newAvatar, "DENTRO DO AddProfile.mjs")
-
     if(newUser === ''){
         newUser = req.body.dbUser;
     }
@@ -20,13 +18,13 @@ Router.post("/", (req, res) => {
         newProfile = req.body.dbProfile;
     }
 
-    console.log("Olha o avatar", typeof newAvatar);
-    console.log("Olha o tamanho do AVATAR", newAvatar.length);
-    console.log("ESTÁ VINDO DO REQ.BODY.AVATAR", req.body.avatar);
-
-    if(newAvatar === '' || newAvatar.length <= 0){
+    
+    if(newAvatar === '' || newAvatar.length <= 0 || newAvatar === 'undefined'){
         newAvatar = req.body.dbAvatar;
     }
+    console.log("Olha o avatar",newAvatar);
+    console.log("Olha o tamanho do AVATAR", newAvatar.length);
+    console.log("ESTÁ VINDO DO REQ.BODY.AVATAR", req.body.avatar);
 
     jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
         if (err) return res.json({ 
@@ -42,8 +40,6 @@ Router.post("/", (req, res) => {
             if(err){
                 console.log("Deu erro no AddProfile.mjs query!", err);
             }
-
-            console.log("foi", result);
 
             res.status(200).send(JSON.stringify({
                 user: newUser,
