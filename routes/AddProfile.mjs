@@ -22,9 +22,6 @@ Router.post("/", (req, res) => {
     if(newAvatar === '' || newAvatar.length <= 0 || newAvatar === 'undefined'){
         newAvatar = req.body.dbAvatar;
     }
-    console.log("Olha o avatar",newAvatar);
-    console.log("Olha o tamanho do AVATAR", newAvatar.length);
-    console.log("ESTÁ VINDO DO REQ.BODY.AVATAR", req.body.avatar);
 
     jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
         if (err) return res.json({ 
