@@ -6,10 +6,10 @@ const connection = mysql.createConnection({
     // password: "teste123",
     // database: "betasocial"
 
-    host: "fdb29.awardspace.net",
-    user: "3665578_beta",
+    host: "db4free.net",
+    user: "wile9090",
     password: "Swordft10!",
-    database: "3665578_beta"
+    database: "betasocial"
 });
 
 export default connection;
