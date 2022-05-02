@@ -8,6 +8,7 @@ Router.post("/", (req, res) => {
     let newUser = req.body.newUser;
     let newProfile = req.body.newProfile;
     let newAvatar = req.body.newAvatar;
+    let newProfileAbout = req.body.newProfileAbout;
     const token = req.body.token;
 
     if(newUser === ''){
@@ -23,6 +24,10 @@ Router.post("/", (req, res) => {
         newAvatar = req.body.dbAvatar;
     }
 
+    if(newProfileAbout === ''){
+        newProfileAbout = req.body.dbProfileAbout;
+    }
+
     jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
         if (err) return res.json({ 
             auth: false,
@@ -32,7 +37,8 @@ Router.post("/", (req, res) => {
         // se tudo estiver ok, salva no request para uso posterior.
         req.userId = decoded.id;
 
-        database.query(`UPDATE users SET user = '${newUser}', profile = '${newProfile}', avatar = '${newAvatar}'
+        database.query(`UPDATE users SET user = 
+        '${newUser}', profile = '${newProfile}', avatar = '${newAvatar},', about = '${newProfileAbout}'
         WHERE id = ${req.userId}`, (err, result) => {
             if(err){
                 console.log("Deu erro no AddProfile.mjs query!", err);
@@ -41,7 +47,8 @@ Router.post("/", (req, res) => {
             res.status(200).send(JSON.stringify({
                 user: newUser,
                 profile: newProfile,
-                avatar: newAvatar
+                avatar: newAvatar,
+                about: newProfileAbout
             }));
         });
         
