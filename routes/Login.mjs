@@ -1,6 +1,8 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 
+import bcrypt from "bcrypt";
+
 const Router = express.Router();
 
 import db from "../config/database.mjs";
@@ -26,7 +28,7 @@ Router.post("/", (req, res) => {
         if(err){console.log("Deu erro!")};
         
         const user = result.find(email => email) || "";
-
+        // const password = result.find(password => password) || "";
         const isVerified = result.find(isVerified => isVerified) || 0;
 
         if(isVerified.isVerified === 0){
@@ -38,7 +40,7 @@ Router.post("/", (req, res) => {
             });
         }
 
-        if(password !== user.password){
+        if(!bcrypt.compareSync(password, user.password)){
             return res.status(400).send({
                 message: "Senha incorreta!",
                 auth: false,
@@ -47,7 +49,7 @@ Router.post("/", (req, res) => {
             });
         }
 
-        if(email === user.email && password === user.password){
+        if(email === user.email && bcrypt.compareSync(password, user.password)){
             const id = user.id;
             const token = jwt.sign({id}, process.env.SECRET_KEY, {
                 expiresIn: 900 // 5min,
