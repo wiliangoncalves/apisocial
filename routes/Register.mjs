@@ -37,6 +37,12 @@ Router.post("/", (req, res) => {
             status: res.statusCode
         });
     }
+    if(!email.includes(".com")){
+        return res.status(400).send({
+            message: "Por favor, preencha o E-mail corretamente!",
+            status: res.statusCode
+        });
+    }
 
     if(password.length < 5 || password.trim() == ""){
         return res.status(400).send({
