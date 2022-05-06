@@ -3,8 +3,11 @@ import express from "express";
 import cors from "cors";
 import path from 'path';
 import {fileURLToPath} from 'url';
+import jwt from "jsonwebtoken";
+import database from "./config/database.mjs";
 
 //Routes import
+import Verify from './routes/Verify.mjs';
 import Login from "./routes/Login.mjs";
 import Register from "./routes/Register.mjs";
 import Me from "./routes/Me.mjs";
@@ -36,6 +39,8 @@ app.get("/", (req, res) => {
 //  }); 
 
 //Routes config
+app.use("/verify", Verify);
+
 app.use("/login", Login);
 app.use("/register", Register);
 app.use("/me", Me);

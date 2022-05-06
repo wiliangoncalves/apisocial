@@ -21,11 +21,22 @@ Router.post("/", (req, res) => {
             status: res.statusCode
         });
     };
-    
+
     db.query(`SELECT * FROM users WHERE email = '${email}'`, (err, result) => {
         if(err){console.log("Deu erro!")};
         
         const user = result.find(email => email) || "";
+
+        const isVerified = result.find(isVerified => isVerified) || 0;
+
+        if(isVerified.isVerified === 0){
+            return res.status(400).send({
+                message: "E-mail não confirmado!",
+                auth: false,
+                token: null,
+                status: res.statusCode
+            });
+        }
 
         if(password !== user.password){
             return res.status(400).send({

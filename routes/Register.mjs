@@ -2,6 +2,10 @@ import express from "express";
 import database from "../config/database.mjs";
 const Router = express.Router();
 
+import jwt from "jsonwebtoken";
+
+import nodemailer from "nodemailer";
+
 Router.post("/", (req, res) => {
     const user = req.body.user || "";
     const profile = req.body.profile || "";
@@ -81,10 +85,47 @@ Router.post("/", (req, res) => {
             database.query(`INSERT INTO users (user, profile, email, password, avatar)
             VALUES('${user}', '${profile}', '${email}', '${password}', '${avatar}')`);
 
-            return res.status(200).send({
-                message: "Cadastro realizado com Sucesso!",
-                status: res.statusCode
+            const transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 587,
+                ignoreTLS: false,
+                secure: false,
+                auth: {
+                    user: "betasocialsuporte@gmail.com",
+                    pass: "Pinga9090!"
+                }
             });
+
+
+            const token = jwt.sign({
+                data: "Token data",
+                email: email
+                }, process.env.SECRET_KEY, { expiresIn: '10m' }  
+            );
+
+            const mailOptions = {
+                from: 'Beta Social <betasocialsuporte@gmail.com>',
+                to: `${email}`,
+                subject: 'Welcome to Beta Social! Confirm Your Email',
+                text: `Hi! There, You have recently visited 
+                our website and entered your email.
+                Please follow the given link to verify your email
+                http://localhost:3080/verify/${token} 
+                Thanks`
+            };
+
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+            });
+
+            // return res.status(200).send({
+            //     message: "Cadastro realizado com Sucesso!",
+            //     status: res.statusCode
+            // });
         }
         database.end();
     });
