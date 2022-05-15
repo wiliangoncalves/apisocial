@@ -16,6 +16,8 @@ Router.get(("/:token"), (req, res) => {
             const email = decoded.email;
 
             database.query(`SELECT * FROM users WHERE email = '${email}'`, (err, result) => {
+                if(err){console.log("Erro no SELECT do Verify.mjs ", err)}
+
                 const user = result.find(email => email) || "";
                 const id = user.id;
 
