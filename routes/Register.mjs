@@ -116,7 +116,7 @@ Router.post("/", (req, res) => {
                             text: `Hi! There, You have recently visited 
                             our website and entered your email.
                             Please follow the given link to verify your email
-                            http://localhost:3080/verify/${token} 
+                            https://tariqa.herokuapp.com/verify/${token} 
                             Thanks`
                         };
 
@@ -126,6 +126,11 @@ Router.post("/", (req, res) => {
                             } else {
                             console.log('Email sent: ' + info.response);
                             }
+                        });
+
+                        return res.status(200).send({
+                            message: "Cadastro realizado com Sucesso!",
+                            status: res.statusCode
                         });
                 });
             });
