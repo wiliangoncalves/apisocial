@@ -89,7 +89,7 @@ Router.post("/", (req, res) => {
 
                     database.query(`INSERT INTO users (user, profile, email, password, avatar)
                         VALUES('${user}', '${profile}', '${email}', '${newPassword}', '${avatar}')`);
-                        database.end();
+                        // database.end();
 
                         const transporter = nodemailer.createTransport({
                             host: 'smtp.gmail.com',
