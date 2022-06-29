@@ -91,15 +91,19 @@ Router.post("/", (req, res) => {
                         VALUES('${user}', '${profile}', '${email}', '${newPassword}', '${avatar}')`);
                         // database.end();
 
+                        const senderMail = "betasocial@yandex.com";
+
                         const transporter = nodemailer.createTransport({
-                            host: 'smtp.gmail.com',
-                            port: 587,
-                            ignoreTLS: false,
+                            host: 'smtp.mail.yandex.com',
+                            port: 465,
+                            service:"Yandex",
                             secure: false,
                             auth: {
-                                user: "betasocialsuporte@gmail.com",
-                                pass: "Pinga9090!"
-                            }
+                            user: senderMail ,
+                            pass: 'Pinga9090@'
+                            },
+                            debug: false,
+                            logger: true
                         });
 
 
@@ -110,7 +114,7 @@ Router.post("/", (req, res) => {
                         );
 
                         const mailOptions = {
-                            from: 'Beta Social <betasocialsuporte@gmail.com>',
+                            from: 'Beta Social <betasocial@yahoo.com>',
                             to: `${email}`,
                             subject: 'Welcome to Beta Social! Confirm Your Email',
                             text: `Hi! There, You have recently visited 
