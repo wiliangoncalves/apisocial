@@ -110,7 +110,7 @@ Router.post("/", (req, res) => {
                         );
 
                         const mailOptions = {
-                            from: 'Beta Social <betasocial@yahoo.com>',
+                            from: 'Beta Social <betasocial@gmail.com>',
                             to: `${email}`,
                             subject: 'Welcome to Beta Social! Confirm Your Email',
                             text: `Hi! There, You have recently visited 
