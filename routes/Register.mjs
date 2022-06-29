@@ -91,16 +91,12 @@ Router.post("/", (req, res) => {
                         VALUES('${user}', '${profile}', '${email}', '${newPassword}', '${avatar}')`);
                         // database.end();
 
-                        const senderMail = "betasocial@yandex.com";
-
                         const transporter = nodemailer.createTransport({
-                            host: 'smtp.mail.yandex.com',
-                            port: 465,
-                            service:"Yandex",
-                            secure: false,
+                            host: 'smtp-relay.sendinblue.com',
+                            port: 587,
                             auth: {
-                            user: senderMail ,
-                            pass: 'Pinga9090@'
+                            user: "betasocialsuporte@gmail.com",
+                            pass: process.env.SMTPPASS
                             },
                             debug: false,
                             logger: true
